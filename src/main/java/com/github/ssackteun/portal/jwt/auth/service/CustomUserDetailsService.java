@@ -35,9 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails customUserDetails(Member member){
-        log.info(member.getAuthority().toString());
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getAuthority().toString());
-
         return new User(String.valueOf(member.getUserId()), member.getPassword(), Collections.singleton(grantedAuthority) );
     }
 }

@@ -1,10 +1,8 @@
 package com.github.ssackteun.portal.jwt.auth.service;
 
 import com.github.ssackteun.portal.jwt.auth.entity.LoginRequestDTO;
-import com.github.ssackteun.portal.jwt.auth.repository.AuthRepository;
 import com.github.ssackteun.portal.jwt.utils.JwtTokenProvider;
 import com.github.ssackteun.portal.jwt.utils.TokenDTO;
-import jdk.nashorn.internal.parser.Token;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,7 @@ public class AuthService implements AuthServiceInterface {
 
     @Autowired
     private AuthenticationManagerBuilder authenticationManagerBuilder;
+
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
@@ -33,7 +32,6 @@ public class AuthService implements AuthServiceInterface {
     public TokenDTO login(LoginRequestDTO loginRequestDTO) {
         //0. 로그인
         UserDetails user = customUserDetailsService.loadUserByUsername(loginRequestDTO.getUserId());
-        log.info("Login : " + user.getUsername() + "\n password: " + user.getPassword() + " \n authority : " + user.getAuthorities());
 
         //1. UsernamePasswordAuthenticationFilter
         UsernamePasswordAuthenticationToken authenticationToken = loginRequestDTO.toAuthentication();
