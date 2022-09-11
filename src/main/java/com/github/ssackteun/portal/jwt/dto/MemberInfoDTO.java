@@ -3,6 +3,7 @@ package com.github.ssackteun.portal.jwt.dto;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.ssackteun.portal.jwt.entity.Authority;
 import com.github.ssackteun.portal.jwt.entity.Member;
 
@@ -17,9 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MemberInfoDTO implements PasswordEncoder{
 	private String userId; // 로그인 아이디
-
 	private String password; // 패스워드
 	private String email; //이메일 주소
 	private Authority authority; // 권한정보
@@ -37,7 +38,7 @@ public class MemberInfoDTO implements PasswordEncoder{
 	}
 
 	//유저 조회 Member to DTO
-	public MemberInfoDTO toDto (Member m){
+	public MemberInfoDTO toDto(Member m){
 		return MemberInfoDTO.builder()
 			.userId(m.getUserId())
 			.name(m.getName())
