@@ -1,10 +1,12 @@
-package com.github.ssackteun.portal.jwt.auth.entity;
+package com.github.ssackteun.portal.jwt.dto;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 
 @Getter
 @Setter

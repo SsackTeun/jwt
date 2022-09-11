@@ -1,9 +1,7 @@
-package com.github.ssackteun.portal.jwt.auth.service;
+package com.github.ssackteun.portal.jwt.service.auth;
 
-import com.github.ssackteun.portal.jwt.auth.entity.Member;
-import com.github.ssackteun.portal.jwt.auth.repository.AuthRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,7 +11,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import com.github.ssackteun.portal.jwt.entity.Member;
+import com.github.ssackteun.portal.jwt.repository.AuthRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
 
 @Service
 @Slf4j

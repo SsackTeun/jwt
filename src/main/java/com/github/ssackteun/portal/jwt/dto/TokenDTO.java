@@ -1,4 +1,4 @@
-package com.github.ssackteun.portal.jwt.utils;
+package com.github.ssackteun.portal.jwt.dto;
 
 import lombok.Builder;
 import lombok.Getter;

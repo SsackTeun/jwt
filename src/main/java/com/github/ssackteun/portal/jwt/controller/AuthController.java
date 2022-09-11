@@ -1,15 +1,23 @@
-package com.github.ssackteun.portal.jwt.auth.controller;
+package com.github.ssackteun.portal.jwt.controller;
 
-import com.github.ssackteun.portal.jwt.auth.entity.LoginRequestDTO;
-import com.github.ssackteun.portal.jwt.auth.service.AuthService;
-import com.github.ssackteun.portal.jwt.utils.TokenDTO;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.ssackteun.portal.jwt.dto.LoginRequestDTO;
+import com.github.ssackteun.portal.jwt.dto.TokenDTO;
+import com.github.ssackteun.portal.jwt.service.auth.AuthService;
+
+import lombok.extern.slf4j.Slf4j;
+
+
+/**
+ * if request with id, password
+ * when login
+ * then get jwtToken
+ * **/
 @Slf4j
 @RestController
 public class AuthController {
