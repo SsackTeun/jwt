@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @SpringBootTest
-public class JWTControllerTests {
+public class AuthControllerTests {
     @Autowired
     MockMvc mockMvc;
 
