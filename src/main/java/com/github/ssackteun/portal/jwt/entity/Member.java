@@ -38,13 +38,4 @@ public class Member {
 
     @Column
     private String name; //이름
-
-    // @Builder
-    // public Member(String userId, String password, Authority authority, String email, String name){
-    //     this.userId = userId;
-    //     this.password = password;
-    //     this.authority = authority;
-    //     this.email = email;
-    //     this.name = name;
-    // }
 }
