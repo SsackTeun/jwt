@@ -1,6 +1,28 @@
 # JWT Token Server
 Spring Boot 2.7.3
-/*JWT*/
+
+application.yml
+```yml
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://{ip or domain}:{port}/{dbname}
+    username: {your-database-username}
+    password: {your-database-password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+jwt:
+  secret: {your-secretKey}
+
+```
+
+build.gradle
+```gradle
+    /*JWT*/
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
     implementation 'io.jsonwebtoken:jjwt-gson:0.11.5'
@@ -27,6 +49,7 @@ Spring Boot 2.7.3
     /*LOMBOK*/
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+```
 
 
 
