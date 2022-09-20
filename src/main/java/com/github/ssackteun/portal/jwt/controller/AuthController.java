@@ -2,13 +2,13 @@ package com.github.ssackteun.portal.jwt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.ssackteun.portal.jwt.dto.LoginRequestDTO;
 import com.github.ssackteun.portal.jwt.dto.TokenDTO;
-import com.github.ssackteun.portal.jwt.service.auth.AuthService;
+import com.github.ssackteun.portal.jwt.service.auth.TokenAuthService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,15 +22,15 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class AuthController {
 
-    private final AuthService authService;
+    private final TokenAuthService tokenAuthService;
 
     @Autowired
-    AuthController(AuthService authService){
-        this.authService = authService;
+    AuthController(TokenAuthService tokenAuthService){
+        this.tokenAuthService = tokenAuthService;
     }
 
-    @GetMapping("/auth/token")
+    @PostMapping("/auth/token")
     public ResponseEntity<TokenDTO> getToken(@RequestBody LoginRequestDTO loginRequestDTO){
-        return ResponseEntity.ok(authService.login(loginRequestDTO));
+        return ResponseEntity.ok(tokenAuthService.login(loginRequestDTO));
     }
 }

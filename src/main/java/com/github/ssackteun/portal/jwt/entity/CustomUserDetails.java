@@ -4,48 +4,60 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Data
-@Builder
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
-
+@ToString
+@Component
+@RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
-   private String userId;
-   private String password;
+
+    private String userId;
+    private String password;
+    private String email;
+    private String name;
+    private Collection<? extends GrantedAuthority> authorities;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return userId;
+        return this.userId;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
