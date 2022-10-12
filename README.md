@@ -1,9 +1,8 @@
 # JWT Token Server
 Spring Boot 2.7.3
 
-
-Use
-
+In Progress 
+---
 application.yml
 ```yml
 spring:
