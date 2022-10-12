@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.ssackteun.portal.jwt.dto.LoginRequestDTO;
 import com.github.ssackteun.portal.jwt.dto.TokenDTO;
 import com.github.ssackteun.portal.jwt.service.auth.TokenAuthService;
@@ -30,7 +31,8 @@ public class AuthController {
     }
 
     @PostMapping("/auth/token")
-    public ResponseEntity<TokenDTO> getToken(@RequestBody LoginRequestDTO loginRequestDTO){
+    public ResponseEntity<TokenDTO> getToken(@RequestBody LoginRequestDTO loginRequestDTO) throws
+        JsonProcessingException {
         return ResponseEntity.ok(tokenAuthService.login(loginRequestDTO));
     }
 }

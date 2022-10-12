@@ -10,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.ssackteun.portal.jwt.dto.LoginRequestDTO;
 import com.github.ssackteun.portal.jwt.entity.CustomUserDetails;
-import com.github.ssackteun.portal.jwt.utils.JwtTokenProvider;
+import com.github.ssackteun.portal.jwt.utils.token.JwtTokenProvider;
 import com.github.ssackteun.portal.jwt.dto.TokenDTO;
 
 @Service
@@ -31,7 +32,7 @@ public class TokenAuthService implements AuthService {
 
     @Override
     @Transactional(readOnly = true)
-    public TokenDTO login(LoginRequestDTO loginRequestDTO) {
+    public TokenDTO login(LoginRequestDTO loginRequestDTO) throws JsonProcessingException {
         //1. 인증 정보생성
         UsernamePasswordAuthenticationToken authenticationToken = loginRequestDTO.toAuthentication();
 

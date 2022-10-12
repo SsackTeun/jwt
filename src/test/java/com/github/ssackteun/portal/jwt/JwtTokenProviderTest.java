@@ -1,12 +1,10 @@
 package com.github.ssackteun.portal.jwt;
 
-import com.github.ssackteun.portal.jwt.utils.JwtTokenProvider;
+import com.github.ssackteun.portal.jwt.utils.token.JwtTokenProvider;
 
-import org.apache.logging.slf4j.SLF4JLoggerContextFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.GrantedAuthority;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
