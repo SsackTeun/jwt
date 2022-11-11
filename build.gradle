@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.github.ssackteun.portal'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "11"
 
 configurations {
     compileOnly {
@@ -54,6 +54,11 @@ dependencies {
     /*LOMBOK*/
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    /**
+     * @VALIDATION
+     */
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.7.5'
 }
 
 tasks.named('test') {
@@ -71,3 +76,4 @@ bootJar {
         into 'static/docs'
     }
 }
+targetCompatibility = JavaVersion.VERSION_11

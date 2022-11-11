@@ -17,7 +17,7 @@ public class HttpSecurityConfiguration {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //세션 사용하지 않음
             .and()
             .authorizeRequests() // request 에 대한 처리
-            .antMatchers("/auth/token").permitAll();
+            .antMatchers("/api/login").permitAll();
         return http.build();
     }
 }

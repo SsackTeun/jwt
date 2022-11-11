@@ -25,7 +25,7 @@ public class WebSecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
         return (web) -> web
                 .ignoring()
-                .antMatchers("/auth/token");
+                .antMatchers("/api/login");
     }
     @Bean
     public PasswordEncoder passwordEncoder(){

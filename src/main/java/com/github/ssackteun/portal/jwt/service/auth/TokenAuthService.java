@@ -1,6 +1,8 @@
 package com.github.ssackteun.portal.jwt.service.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.ssackteun.portal.jwt.dto.LoginRequestDTO;
 import com.github.ssackteun.portal.jwt.entity.CustomUserDetails;
+import com.github.ssackteun.portal.jwt.errorhandler.BusinessException;
 import com.github.ssackteun.portal.jwt.utils.token.JwtTokenProvider;
 import com.github.ssackteun.portal.jwt.dto.TokenDTO;
 
@@ -44,6 +47,8 @@ public class TokenAuthService implements AuthService {
         log.info(userInfo.toString());
 
         //3. 인증정보로 JWT 토큰생성
-        return jwtTokenProvider.generate(authentication);
+        TokenDTO tokenDTO = jwtTokenProvider.generate(authentication);
+
+        return tokenDTO;
     }
 }

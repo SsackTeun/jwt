@@ -18,10 +18,8 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private String userId;
+    private String userName;
     private String password;
-    private String email;
-    private String name;
     private Collection<? extends GrantedAuthority> authorities;
 
 
@@ -38,7 +36,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userId;
+        return this.userName;
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.github.ssackteun.portal.jwt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  * **/
 @Slf4j
 @RestController
+@RequestMapping("/api")
 public class AuthController {
 
     private final TokenAuthService tokenAuthService;
@@ -30,9 +34,16 @@ public class AuthController {
         this.tokenAuthService = tokenAuthService;
     }
 
-    @PostMapping("/auth/token")
+    @PostMapping("/login")
     public ResponseEntity<TokenDTO> getToken(@RequestBody LoginRequestDTO loginRequestDTO) throws
         JsonProcessingException {
-        return ResponseEntity.ok(tokenAuthService.login(loginRequestDTO));
+        log.info("login::{}", loginRequestDTO);
+        //로그인
+        TokenDTO tokenDTO = tokenAuthService.login(loginRequestDTO);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("token", tokenDTO.getToken());
+
+        return new ResponseEntity(tokenDTO, httpHeaders, 200);
     }
 }

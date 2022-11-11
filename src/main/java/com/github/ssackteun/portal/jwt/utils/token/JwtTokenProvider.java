@@ -26,21 +26,24 @@ import io.jsonwebtoken.Jwts;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
 @Getter
+@Setter
 public class JwtTokenProvider {
 
-    private final String secretKey;
+    private static String secretKey;
 
-    public JwtTokenProvider(
-        @Value("${jwt.secret}") String secretKey) {
-        this.secretKey = secretKey;
+    @Value("${jwt.secret}")
+    public void setSecretKey(String key){
+        secretKey = key;
     }
 
     public Jws<Claims> parse(String token){
+        log.info("key::{}", secretKey);
         return Jwts.parserBuilder()
             .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
             .build()
@@ -86,7 +89,7 @@ public class JwtTokenProvider {
             .setHeader(headers)
             .setClaims(payloads)
             .claim("perms", authority) // key 값 제외하기 위해서
-            .setExpiration(TokenWithDate.createOfExp(Calendar.MINUTE, 30))
+            .setExpiration(TokenWithDate.createOfExp(Calendar.MINUTE, 360000))
             .setIssuedAt(TokenWithDate.createOfExp(Calendar.MINUTE, 0))
             .signWith(key)
             .compact();

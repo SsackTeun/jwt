@@ -9,10 +9,10 @@ import com.github.ssackteun.portal.jwt.entity.Member;
 
 @Repository
 public interface AuthRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByUserId(String userId);
+    Optional<Member> findByUserName(String userName);
 
     Optional<Member> findById(Long id);
 
-    boolean existsByUserId(String userId);
+    boolean existsByUserName(String userName);
 
 }

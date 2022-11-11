@@ -32,19 +32,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        return authRepository.findByUserId(userId)
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        log.info("username::{}", userName);
+        return authRepository.findByUserName(userName)
                 .map(this::customUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException(userId + " 를 찾을 수 없습니다"));
+                .orElseThrow(() -> new UsernameNotFoundException(userName + " 를 찾을 수 없습니다"));
     }
 
     private UserDetails customUserDetails(Member member){
+        log.info("member::{}", member);
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getAuthority().toString());
         return new CustomUserDetails(
-            member.getUserId(),
+            member.getUserName(),
             member.getPassword(),
-            member.getEmail(),
-            member.getName(),
             Collections.singleton(grantedAuthority));
     }
 }
