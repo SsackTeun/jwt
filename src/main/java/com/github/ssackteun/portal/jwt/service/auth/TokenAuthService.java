@@ -30,8 +30,8 @@ public class TokenAuthService implements AuthService {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    // @Autowired
+    // private CustomUserDetailsService customUserDetailsService;
 
     @Override
     @Transactional(readOnly = true)

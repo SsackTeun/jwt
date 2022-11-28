@@ -14,14 +14,17 @@ import com.github.ssackteun.portal.jwt.entity.CustomUserDetails;
 import com.github.ssackteun.portal.jwt.entity.Member;
 import com.github.ssackteun.portal.jwt.repository.AuthRepository;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 
-@Service
+
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private AuthRepository authRepository;

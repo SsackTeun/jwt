@@ -1,5 +1,6 @@
 package com.github.ssackteun.portal.jwt.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.github.ssackteun.portal.jwt.service.auth.CustomUserDetailsService;
 
 @Configuration
@@ -17,7 +17,8 @@ import com.github.ssackteun.portal.jwt.service.auth.CustomUserDetailsService;
 public class WebSecurityConfiguration {
     private final CustomUserDetailsService customUserDetailsService;
 
-    WebSecurityConfiguration(CustomUserDetailsService customUserDetailsService){
+    @Autowired
+    public WebSecurityConfiguration(CustomUserDetailsService customUserDetailsService){
             this.customUserDetailsService = customUserDetailsService;
     }
 

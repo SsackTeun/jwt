@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'org.asciidoctor.convert' version '1.5.8'
     id 'java'
+    id 'com.google.cloud.tools.jib' version '3.2.0'
 }
 
 group = 'com.github.ssackteun.portal'
@@ -34,16 +35,18 @@ dependencies {
 
     /*DATABASE*/
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.7'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.31'
 
     /*SPRING BOOT*/
         /*CORE*/
-    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.7.3'
+    //implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.7.3'
         /*SECURITY*/
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
         /*WEB*/
     implementation 'org.springframework.boot:spring-boot-starter-web'
         /*JPA*/
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
         /*LIVE RELOAD*/
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
         /*TEST tool*/
@@ -52,13 +55,13 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
     /*LOMBOK*/
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
     /**
      * @VALIDATION
      */
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.7.5'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 }
 
 tasks.named('test') {
