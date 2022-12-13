@@ -1,0 +1,17 @@
+#configMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authservice-configmap
+data:
+  mysql_url: "jdbc:mysql://mysql:3306/auth?useSSL=true&requireSSL=false&serverTimezone=Asia/Seoul"
+  mysql_username: "onware"
+---
+#Secret
+apiVersion: v1
+data:
+  mysql_password: MTIzNA==
+kind: Secret
+metadata:
+  name: authservice-secret
+type: Opaque

@@ -37,7 +37,6 @@ public class MemberInfoDTO implements PasswordEncoder{
 	public Member toEntity(){
 		return Member.builder()
 			.userName(this.userName)
-			.authority(this.authority)
 			.password(encode(this.password))
 			.build();
 	}
@@ -47,7 +46,6 @@ public class MemberInfoDTO implements PasswordEncoder{
 		return MemberInfoDTO.builder()
 			.userName(m.getUserName())
 			.password(m.getPassword())
-			.authority(m.getAuthority())
 			.build();
 	}
 

@@ -20,13 +20,13 @@ public class CustomUserDetails implements UserDetails {
 
     private String userName;
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    // private Collection<? extends GrantedAuthority> authorities;
 
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
