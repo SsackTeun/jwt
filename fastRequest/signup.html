@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>FastRequest-get user info test</title>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+
+        body {
+            font-family: Arial;
+            font-size: 14px;
+            line-height: 18px;
+            color: #737373;
+            background-color: white;
+            margin: 20px;
+        }
+
+        table {
+            margin: 10px 0 15px 0;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 3px 10px;
+        }
+
+        th {
+            padding: 5px 10px;
+        }
+
+        a {
+            color: #0069d6;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        a:hover {
+            color: #0050a3;
+            text-decoration: none;
+        }
+
+        a img {
+            border: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        p {
+            margin-bottom: 9px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #404040;
+            line-height: 36px;
+        }
+
+        h1 {
+            margin-bottom: 18px;
+            font-size: 26px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+
+        h6 {
+            font-size: 13px;
+        }
+
+        hr {
+            margin: 0 0 19px;
+            border: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        blockquote {
+            margin-bottom: 18px;
+            font-family: Arial;
+            font-style: italic;
+        }
+
+        blockquote:before {
+            content: "\201C";
+            font-size: 40px;
+            margin-left: -10px;
+            font-family: Arial;
+            color: #eee;
+        }
+
+        blockquote p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 18px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        code, pre {
+            font-family: Arial;
+        }
+
+        code {
+            background-color: #fee9cc;
+            color: rgba(0, 0, 0, 0.75);
+            padding: 1px 3px;
+            font-size: 12px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        pre {
+            display: block;
+            padding: 14px;
+            margin: 0 0 18px;
+            line-height: 16px;
+            font-size: 11px;
+            border: 1px solid #d9d9d9;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #F5F2F0;
+        }
+
+        pre code {
+            background-color: #F5F2F0;
+            color: #737373;
+            font-size: 11px;
+            padding: 0;
+        }
+
+        sup {
+            font-size: 0.83em;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        * {
+            -webkit-print-color-adjust: exact;
+        }
+
+        @media screen and (min-width: 914px) {
+            body {
+                width: 854px;
+                margin: 10px auto;
+            }
+        }
+
+        @media print {
+            body, code, pre code, h1, h2, h3, h4, h5, h6 {
+                color: black;
+            }
+
+            table, pre {
+                page-break-inside: avoid;
+            }
+        }
+
+        figcaption {
+            text-align: center;
+        }
+
+        /* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript */
+        /**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+        code[class*="language-"],
+        pre[class*="language-"] {
+            color: black;
+            background: none;
+            text-shadow: 0 1px white;
+            font-family: Arial;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.5;
+
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+
+        pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+        code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+            text-shadow: none;
+            background: #b3d4fc;
+        }
+
+        pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+        code[class*="language-"]::selection, code[class*="language-"] ::selection {
+            text-shadow: none;
+            background: #b3d4fc;
+        }
+
+        @media print {
+            code[class*="language-"],
+            pre[class*="language-"] {
+                text-shadow: none;
+            }
+        }
+
+        /* Code blocks */
+        pre[class*="language-"] {
+            padding: 1em;
+            margin: .5em 0;
+            overflow: auto;
+        }
+
+        :not(pre) > code[class*="language-"],
+        pre[class*="language-"] {
+            background: #f5f2f0;
+        }
+
+        /* Inline code */
+        :not(pre) > code[class*="language-"] {
+            padding: .1em;
+            border-radius: .3em;
+            white-space: normal;
+        }
+
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: slategray;
+        }
+
+        .token.punctuation {
+            color: #999;
+        }
+
+        .namespace {
+            opacity: .7;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #905;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #690;
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+            color: #9a6e3a;
+            background: hsla(0, 0%, 100%, .5);
+        }
+
+        .token.atrule,
+        .token.attr-value,
+        .token.keyword {
+            color: #07a;
+        }
+
+        .token.function,
+        .token.class-name {
+            color: #DD4A68;
+        }
+
+        .token.regex,
+        .token.important,
+        .token.variable {
+            color: #e90;
+        }
+
+        .token.important,
+        .token.bold {
+            font-weight: bold;
+        }
+
+        .token.italic {
+            font-style: italic;
+        }
+
+        .token.entity {
+            cursor: help;
+        }
+
+
+        pre[class*="language-"].line-numbers {
+            position: relative;
+            padding-left: 3.8em;
+            counter-reset: linenumber;
+        }
+
+        pre[class*="language-"].line-numbers > code {
+            position: relative;
+            white-space: inherit;
+        }
+
+        .line-numbers .line-numbers-rows {
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            font-size: 100%;
+            left: -3.8em;
+            width: 3em; /* works for line-numbers below 1000 lines */
+            letter-spacing: -1px;
+            border-right: 1px solid #999;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+
+        .line-numbers-rows > span {
+            pointer-events: none;
+            display: block;
+            counter-increment: linenumber;
+        }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+    </style>
+
+    <style> @media print {
+        code[class*="language-"], pre[class*="language-"] {
+            overflow: visible;
+            word-wrap: break-word !important;
+        }
+    }</style>
+</head>
+<body>
+<div id="markdown-body-wrap" class="markdown-body">
+    <h1 id="toc_0">signup</h1>
+
+    <p><b>URL</b>: <a href="http://localhost:8080/api/member/register">http://localhost:8080/api/member/register</a></p>
+
+    <p><b>Origin Url</b>: http://localhost:8080/api/member/register</p>
+
+    <p><b>Type</b>: POST</p>
+
+    <h3 id="toc_1">Request headers</h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Header Name</th>
+            <th>Header Value</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>token</td>
+            <td>
+                eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkb21haW4iOiJvbndhcmUubG9jYWwiLCJhY2N0IjoianlAb253YXJlLmNvLmtyIiwicGVybXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTY4OTc0ODIzNywiaWF0IjoxNjY4MTQ4MjM3fQ.qIbrV60I_9-SPwyWmXkJrAfi6TKFu7qBwwJPlbSKrVZLtSXCXgg_r2wRI90vObNgsga7_00P0VBdC52tGh7xXQ
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+    <h3>Parameters</h3>
+
+    <div style="border:1px solid;padding:10px 10px">
+        <h5 id="toc_2">Path parameters</h5>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+
+        <br/>
+        <h5 id="toc_3">URL parameters</h5>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Required</th>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+
+        <br/>
+        <h5 id="toc_4">Body parameters</h5>
+
+        <br/>
+        <h6 id="toc_5">JSON</h6>
+
+        <pre><code class="language-text">
+{
+  "userName": "jy@onware.co.kr",
+  "password": "1234",
+  "authority": "ROLE_USER"
+}
+</code></pre>
+
+        <h6>JSON document</h6>
+
+        <pre><code class="language-text">
+{
+  "userName": "No comment,Value =userName_uycqw",
+  "password": "No comment,Value =password_ssvxu",
+  "authority": "No comment,Value =ROLE_USER"
+}
+</code></pre>
+
+        <h5 id="toc_6">Form URL-Encoded</h5>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Required</th>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+
+        <br/>
+        <h5 id="toc_7">Multipart</h5>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Required</th>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+
+    <br/>
+    <h3 id="toc_8">Response</h3>
+
+    <h6 id="toc_9">Response example</h6>
+
+    <pre><code class="language-text">{
+  "userName": "jy@onware.co.kr",
+  "authority": "ROLE_USER"
+}</code></pre>
+
+    <h6 id="toc_10">Response document</h6>
+
+    <pre><code class="language-text">{
+	"status":{},
+	"body":{}
+}</code></pre>
+
+</div>
+</body>
+
+</html>
