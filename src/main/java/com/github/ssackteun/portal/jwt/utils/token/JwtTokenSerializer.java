@@ -25,7 +25,7 @@ public class JwtTokenSerializer extends StdSerializer<JwtToken> {
 		gen.writeStringField("domain", value.getDomain()); //domain
 
 		//JWT - payload
-		gen.writeStringField("acct",value.getAcct()); // Account
+		gen.writeStringField("username",value.getAcct()); // Account
 		gen.writeNumberField("iat", value.getIat()); //issued at
 		gen.writeNumberField("exp", value.getExp()); // expiration
 

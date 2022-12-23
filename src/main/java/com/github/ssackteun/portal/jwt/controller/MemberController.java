@@ -21,7 +21,7 @@ import com.github.ssackteun.portal.jwt.utils.token.JwtTokenProvider;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/api")
+@RequestMapping("/v1/auth")
 @RestController
 @Slf4j
 public class MemberController {
@@ -35,13 +35,13 @@ public class MemberController {
 
 
     //Add Account
-    @PostMapping("/member/register")
+    @PostMapping("/user")
     public ResponseEntity<?> signup(@RequestBody MemberInfoDTO memberInfoDTO) throws Exception {
         return ResponseEntity.ok(memberService.createMember(memberInfoDTO));
     }
 
     //유저정보
-    @GetMapping(value = "/member")
+    @GetMapping(value = "/user")
     public ResponseEntity<?> getUserInfo(@RequestHeader(name = "token") String token){
         MemberInfoDTO memberInfoDTO = memberService.getMemberInfo(token);
         return ResponseEntity.ok(memberService.readMember(memberInfoDTO));

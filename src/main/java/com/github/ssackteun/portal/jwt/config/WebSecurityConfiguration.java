@@ -17,6 +17,9 @@ import com.github.ssackteun.portal.jwt.service.auth.CustomUserDetailsService;
 public class WebSecurityConfiguration {
     private final CustomUserDetailsService customUserDetailsService;
 
+
+
+
     @Autowired
     public WebSecurityConfiguration(CustomUserDetailsService customUserDetailsService){
             this.customUserDetailsService = customUserDetailsService;

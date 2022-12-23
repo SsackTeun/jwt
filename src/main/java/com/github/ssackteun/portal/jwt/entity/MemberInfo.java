@@ -59,5 +59,4 @@ public class MemberInfo {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateAt; //생성일
 
-
 }

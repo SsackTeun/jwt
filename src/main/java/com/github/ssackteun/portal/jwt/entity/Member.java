@@ -55,4 +55,5 @@ public class Member {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateAt; //생성일
 
+
 }
